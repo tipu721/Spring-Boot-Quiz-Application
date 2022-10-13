@@ -1,7 +1,21 @@
 package com.tipu.main.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.springframework.stereotype.Component;
+
+
+@Component
+@Entity
+@Table(name = "questions")
 public class Question {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int quesId;
 	private String title;
 	private String optionA;
@@ -77,14 +91,14 @@ public class Question {
 		return chose;
 	}
 
-	public void setChose(int chose) {
-		this.chose = chose;
+	public void setChose(int choosed) {
+		this.chose = choosed;
 	}
 
 	@Override
 	public String toString() {
-		return "Question [quesId=" + quesId + ", title=" + title + ", optionA=" + optionA + ", optionB=" + optionB
-				+ ", optionC=" + optionC + ", ans=" + ans + ", chose=" + chose + "]";
+		return "Question [quesId=" + quesId + ", title=" + title + ", optionA=" + optionA + ", optionB=" + optionB + ", optionC=" + optionC + ", ans=" + ans + ", chose=" + chose + "]";
 	}
+
 
 }
