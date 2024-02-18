@@ -28,7 +28,7 @@ public class StudentController {
     @PostMapping("/save")
    String saveStudent(Student student){
         studentService.save(student);
-        return "redirect:/list";
+        return "redirect:/Student/list";
     }
     @GetMapping("/list")
     String listStudent(Model model){
