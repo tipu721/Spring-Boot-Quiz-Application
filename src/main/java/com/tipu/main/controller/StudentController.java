@@ -1,12 +1,17 @@
 package com.tipu.main.controller;
 
+import com.tipu.main.model.Department;
 import com.tipu.main.model.Student;
+import com.tipu.main.service.DepartmentService;
 import com.tipu.main.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -17,9 +22,14 @@ public class StudentController {
     @Autowired
     StudentService studentService;
 
+    @Autowired
+    DepartmentService departmentService;
+
     @GetMapping("/add")
     String showAddStudentForm(Model model) {
         model.addAttribute("student", new Student());
+
+        model.addAttribute("departmentList", departmentService.getList());
         return "student/add";
     }
 
@@ -29,20 +39,9 @@ public class StudentController {
         return "redirect:/Student/list";
     }
     @GetMapping("/list")
-    @ResponseBody
-    Object listStudent(Model model, @RequestParam(value = "param", required=false) String param){
-        List<Student>studentList = studentService.getList();
-        if(param != null && param.equals("ajax")){
-            return studentList;
-        }
-
+    String listStudent(Model model){
+        List<Student> studentList = studentService.getList();
         model.addAttribute("studentList", studentList);
         return "/student/list";
-    }
-
-    @GetMapping("/list1")
-
-    List<Student> listStudentData(){
-        return  studentService.getList();
     }
 }

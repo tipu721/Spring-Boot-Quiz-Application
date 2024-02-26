@@ -25,20 +25,23 @@
         <tr>
             <th>Name</th>
             <th>Email</th>
+            <th>Department</th>
         </tr>
         <tr th:each="student : ${studentList}">
             <td th:text="${student.name}"></td>
             <td th:text="${student.email}"></td>
-            <td th:text="${student.department}"></td>
+            <td th:id="deptId" th:value="${student.departmentId}"></td>
         </tr>
     </table>
 </div>
 
 <!-- Importing Footer -->
 <div th:insert="footer.html :: footer"></div>
-
+<!--<script th:inline="javascript">-->
+<!--    let deptId = document.getElementById("deptId").value;-->
+<!--    console.log(deptId);-->
+<!--</script>-->
 <!-- Bootstrap JS -->
-<script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
