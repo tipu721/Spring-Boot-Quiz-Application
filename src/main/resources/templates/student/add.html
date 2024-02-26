@@ -24,6 +24,9 @@
             <input type="text" id="name" th:field="*{name}" />
             <p>Enter Your Email</p>
             <input type="text" th:field="*{email}" />
+            <select id="myDropdown">
+                <!-- Dropdown options will be populated dynamically -->
+            </select>
             <button type="submit" class="btn btn-warning">Save</button>
         </form>
     </div>
@@ -32,10 +35,30 @@
 <!-- Importing Footer -->
 <div th:insert="footer.html :: footer"></div>
 
+
+<script th:inline="javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/Department/list', true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var items = JSON.parse(xhr.responseText);
+                var dropdown = document.getElementById('myDropdown');
+                items.forEach(function(item) {
+                    var option = document.createElement('option');
+                    option.value = item.id;
+                    option.text = item.name;
+                    dropdown.appendChild(option);
+                });
+            } else if (xhr.readyState === 4) {
+                console.error('Error fetching items. Status code: ' + xhr.status);
+            }
+        };
+        xhr.send();
+    });
+</script>
+
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    document.getElementById("enterName").innerHTML="Enter Full Name";
-</script>
 </body>
 </html>

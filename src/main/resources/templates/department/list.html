@@ -23,13 +23,10 @@
 
     <table class="bg-dark text-light">
         <tr>
-            <th>Name</th>
-            <th>Email</th>
+            <th>Department Name</th>
         </tr>
-        <tr th:each="student : ${studentList}">
-            <td th:text="${student.name}"></td>
-            <td th:text="${student.email}"></td>
-            <td th:text="${student.department}"></td>
+        <tr th:each="department : ${departmentList}">
+            <td th:text="${department.name}"></td>
         </tr>
     </table>
 </div>
