@@ -2,10 +2,7 @@ package com.tipu.main.model;
 
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Student {
@@ -18,7 +15,9 @@ public class Student {
 
     String email;
 
-    Integer departmentId;
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    Department department;
 
     public Integer getId() {
         return id;
@@ -44,11 +43,11 @@ public class Student {
         this.email = email;
     }
 
-    public Integer getDepartmentId() {
-        return departmentId;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setDepartmentId(Integer departmentId) {
-        this.departmentId = departmentId;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 }

@@ -11,6 +11,33 @@
             rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/score.css}">
     <title>Score Board</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Function to fetch department name using AJAX
+            function fetchDepartmentName(departmentId, tdElement) {
+                $.ajax({
+                    url: '/getDepartmentName', // URL to fetch department name, change it to your endpoint
+                    type: 'GET',
+                    data: { departmentId: departmentId },
+                    success: function(response) {
+                        tdElement.text(response.departmentName);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error fetching department name:', error);
+                    }
+                });
+            }
+
+            // Iterate over each department ID cell and fetch department name
+            $('table .departmentId').each(function() {
+                var departmentId = $(this).text();
+                var tdElement = $(this);
+                fetchDepartmentName(departmentId, tdElement);
+            });
+        });
+    </script>
 </head>
 <body>
 
@@ -21,7 +48,7 @@
 <div class="main-container container py-5 px-4">
     <h3 class="bg-danger text-center mb-5 p-2">Student List</h3>
 
-    <table class="bg-dark text-light">
+    <table id="studentTable" class="bg-dark text-light">
         <tr>
             <th>Name</th>
             <th>Email</th>
@@ -30,7 +57,7 @@
         <tr th:each="student : ${studentList}">
             <td th:text="${student.name}"></td>
             <td th:text="${student.email}"></td>
-            <td th:id="deptId" th:value="${student.departmentId}"></td>
+            <td th:text=""></td>
         </tr>
     </table>
 </div>

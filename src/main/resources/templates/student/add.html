@@ -25,8 +25,8 @@
             <p>Enter Your Email</p>
             <input type="text" th:field="*{email}" />
             <p>Select Your Department</p>
-            <select class="form-select mb-5" th:field="*{departmentId}">
-                <option th:each="department: ${departmentList}" th:value="${department.id}" th:text="${department.name}"></option>
+            <select id="department" name="department.id">
+                <option th:each="dept : ${departmentList}" th:value="${dept.id}" th:text="${dept.name}">Department Name</option>
             </select>
             <button type="submit" class="btn btn-warning">Save</button>
         </form>
