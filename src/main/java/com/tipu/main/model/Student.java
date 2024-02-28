@@ -1,6 +1,5 @@
 package com.tipu.main.model;
 
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 

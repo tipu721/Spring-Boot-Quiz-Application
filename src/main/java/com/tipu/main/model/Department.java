@@ -1,6 +1,10 @@
 package com.tipu.main.model;
 
 import javax.persistence.*;
+<<<<<<< Updated upstream
+=======
+import java.util.List;
+>>>>>>> Stashed changes
 
 @Entity
 public class Department {
@@ -9,6 +13,10 @@ public class Department {
     Integer id;
 
     String name;
+
+
+    @OneToMany(mappedBy = "student")
+    private List<Department> departmentList;
 
     public Integer getId() {
         return id;
@@ -24,5 +32,13 @@ public class Department {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Department> getDepartmentList() {
+        return departmentList;
+    }
+
+    public void setDepartmentList(List<Department> departmentList) {
+        this.departmentList = departmentList;
     }
 }
