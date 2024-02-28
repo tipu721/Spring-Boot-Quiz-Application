@@ -1,7 +1,7 @@
 package com.tipu.main.controller;
 
-import com.tipu.main.model.Department;
 import com.tipu.main.model.Student;
+import com.tipu.main.repository.StudentRepo;
 import com.tipu.main.service.DepartmentService;
 import com.tipu.main.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 
@@ -24,6 +25,9 @@ public class StudentController {
 
     @Autowired
     DepartmentService departmentService;
+
+    @Autowired
+    StudentRepo studentRepo;
 
     @GetMapping("/add")
     String showAddStudentForm(Model model) {

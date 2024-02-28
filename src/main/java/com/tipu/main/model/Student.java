@@ -16,7 +16,6 @@ public class Student {
     String email;
 
     @ManyToOne
-    @JoinColumn(name = "department_id")
     Department department;
 
     public Integer getId() {

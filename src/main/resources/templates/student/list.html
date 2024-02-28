@@ -57,7 +57,7 @@
         <tr th:each="student : ${studentList}">
             <td th:text="${student.name}"></td>
             <td th:text="${student.email}"></td>
-            <td th:text=""></td>
+            <td th:text="${student.department?.name}"></td>
         </tr>
     </table>
 </div>
