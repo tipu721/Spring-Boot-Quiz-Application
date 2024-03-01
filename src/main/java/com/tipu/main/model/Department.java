@@ -1,5 +1,6 @@
 package com.tipu.main.model;
 
+
 import javax.persistence.*;
 
 @Entity
@@ -9,6 +10,10 @@ public class Department {
     Integer id;
 
     String name;
+
+
+    @ManyToOne
+    Faculty faculty;
 
     public Integer getId() {
         return id;
@@ -24,5 +29,13 @@ public class Department {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Faculty getFaculty() {
+        return faculty;
+    }
+
+    public void setFaculty(Faculty faculty) {
+        this.faculty = faculty;
     }
 }

@@ -24,9 +24,11 @@
     <table class="bg-dark text-light">
         <tr>
             <th>Department Name</th>
+            <th>Faculty Name</th>
         </tr>
         <tr th:each="department : ${departmentList}">
             <td th:text="${department.name}"></td>
+            <td th:text="${department.faculty.name}"></td>
         </tr>
     </table>
 </div>
