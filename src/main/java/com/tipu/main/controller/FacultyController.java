@@ -2,17 +2,15 @@ package com.tipu.main.controller;
 
 import com.tipu.main.model.Department;
 import com.tipu.main.model.Faculty;
-import com.tipu.main.model.Question;
 import com.tipu.main.service.FacultyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/Faculty")
@@ -43,6 +41,12 @@ public class FacultyController {
         List<Faculty> facultyList = facultyService.getList();
         model.addAttribute("facultyList", facultyList);
         return "/faculty/list";
+    }
+
+    @GetMapping("/ajax/{id}")
+    @ResponseBody
+    Optional<Faculty> GetFaculty(@PathVariable("id") Integer id){
+         return facultyService.getFaculty(id);
     }
 
 }

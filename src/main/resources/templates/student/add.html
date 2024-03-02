@@ -21,13 +21,18 @@
         <h1 class="mb-5 text-center">Add Student</h1>
         <form class="card bg-dark py-5 px-4" th:action="@{/Student/save}" method="post" th:object="${student}">
             <p id="enterName">Enter Your Name</p>
-            <input type="text" id="name" th:field="*{name}" />
+            <input type="text" id="name" th:field="*{name}"/>
             <p>Enter Your Email</p>
-            <input type="text" th:field="*{email}" />
-            <p>Select Your Department</p>
-            <select id="department" name="department.id">
-                <option th:each="dept : ${departmentList}" th:value="${dept.id}" th:text="${dept.name}">Department Name</option>
+            <input type="text" th:field="*{email}"/>
+            <p>Select Your Faculty</p>
+            <select class="mb-2 py-1 px-1" id="faculty" name="faculty.id" onchange="loadDepartment(this.value)">
+                <option>Select Faculty</option>
+                <option th:each="faculty : ${facultyList}" th:value="${faculty.id}" th:text="${faculty.name}">Faculty
+                    Name
+                </option>
             </select>
+            <p>Select Your Department</p>
+            <Select  class= "mb-5 py-1 px-1" th:field="*{department}" id="department">  </Select>
             <button type="submit" class="btn btn-warning">Save</button>
         </form>
     </div>
@@ -36,7 +41,29 @@
 <!-- Importing Footer -->
 <div th:insert="footer.html :: footer"></div>
 
-<script th:inline="javascript">
+<script>
+
+    function loadDepartment(facultyId) {
+
+
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function () {
+            const faculty = JSON.parse(this.responseText);
+            const departmentList = faculty.departmentList;
+            document.getElementById("department").innerHTML ="";
+            let select = document.getElementById("department");
+            for(let i = 0; i < departmentList.length; i++){
+                let opt = departmentList[i];
+                let el = document.createElement("option");
+                el.textContent = opt.name;
+                el.value = opt.id;
+                select.appendChild(el);
+            }
+        }
+        xhttp.open("GET", "http://localhost:8001/Faculty/ajax/" + facultyId);
+        xhttp.send();
+    }
+
 </script>
 </body>
 </html>

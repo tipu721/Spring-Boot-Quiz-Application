@@ -2,7 +2,7 @@ package com.tipu.main.controller;
 
 import com.tipu.main.model.Student;
 import com.tipu.main.repository.StudentRepo;
-import com.tipu.main.service.DepartmentService;
+import com.tipu.main.service.FacultyService;
 import com.tipu.main.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,10 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 
@@ -24,7 +22,7 @@ public class StudentController {
     StudentService studentService;
 
     @Autowired
-    DepartmentService departmentService;
+    FacultyService facultyService;
 
     @Autowired
     StudentRepo studentRepo;
@@ -32,7 +30,7 @@ public class StudentController {
     @GetMapping("/add")
     String showAddStudentForm(Model model) {
         model.addAttribute("student", new Student());
-        model.addAttribute("departmentList", departmentService.getList());
+        model.addAttribute("facultyList", facultyService.getList());
         return "student/add";
     }
 

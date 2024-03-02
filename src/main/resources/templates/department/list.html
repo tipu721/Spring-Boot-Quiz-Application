@@ -28,7 +28,7 @@
         </tr>
         <tr th:each="department : ${departmentList}">
             <td th:text="${department.name}"></td>
-            <td th:text="${department.faculty.name}"></td>
+            <td th:text="${department.faculty?.name}"></td>
         </tr>
     </table>
 </div>

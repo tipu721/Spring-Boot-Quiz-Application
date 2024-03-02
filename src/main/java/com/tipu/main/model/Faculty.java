@@ -1,5 +1,7 @@
 package com.tipu.main.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
@@ -14,8 +16,9 @@ public class Faculty {
     String name;
 
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "faculty_id", referencedColumnName = "id")
+    @JsonManagedReference
     List<Department> departmentList;
 
 

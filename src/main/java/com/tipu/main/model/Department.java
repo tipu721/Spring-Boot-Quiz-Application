@@ -1,6 +1,8 @@
 package com.tipu.main.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,6 +15,7 @@ public class Department {
 
 
     @ManyToOne
+    @JsonBackReference
     Faculty faculty;
 
     public Integer getId() {
