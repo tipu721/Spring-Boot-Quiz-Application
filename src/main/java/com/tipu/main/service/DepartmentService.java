@@ -16,7 +16,7 @@ public class DepartmentService {
         departmentRepo.save(department);
     }
 
-    public List<Department> getList() {
-        return departmentRepo.findAll();
+    public List<Department> getList(Integer pageStart, Integer pageLength) {
+        return departmentRepo.findByPage(pageStart, pageLength);
     }
 }

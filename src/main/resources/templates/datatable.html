@@ -47,13 +47,15 @@
 
 <script>
     $('#example').DataTable({
+        serverSide: true,
         ajax: {
             url: 'http://localhost:8001/Department/list/ajax',
+            type: 'POST',
             dataSrc: ''
         },
         columns: [
-            { "data": "id" },
-            { "data": "name" }
+            { data: "id" },
+            { data: "name" }
         ]
     });
 </script>
