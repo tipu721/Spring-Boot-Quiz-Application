@@ -19,4 +19,8 @@ public class DepartmentService {
     public List<Department> getList(Integer pageStart, Integer pageLength) {
         return departmentRepo.findByPage(pageStart, pageLength);
     }
+
+    public Integer getTotalRow() {
+       return departmentRepo.countById();
+    }
 }

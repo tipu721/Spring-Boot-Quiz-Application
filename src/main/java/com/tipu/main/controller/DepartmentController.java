@@ -9,7 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/Department")
@@ -38,9 +40,18 @@ public class DepartmentController {
 
     @RequestMapping("/list/ajax")
     @ResponseBody
-    List<Department> listDepartmentAjax(@RequestParam(name = "draw") Integer pageNo, @RequestParam(name="length") Integer pageLength){
-        Integer pageStart = (pageNo-1)*pageLength;
-       return departmentService.getList(pageStart, pageLength);
+    Map<String,Object> getPageList(@RequestParam(name = "start") Integer start, @RequestParam(name="length") Integer pageLength){
+
+        Map<String, Object>responseMap = new HashMap<>();
+
+        List<Department>departmentList =  departmentService.getList(start, pageLength);
+        responseMap.put("data",departmentList);
+        Integer totalRow = departmentService.getTotalRow();
+        responseMap.put("recordsTotal",totalRow);
+        responseMap.put("recordsFiltered",totalRow);
+
+        return responseMap;
 
     }
+
 }
