@@ -11,8 +11,8 @@ import java.util.List;
 public interface DepartmentRepo extends JpaRepository<Department, Integer> {
 
 
-    @Query( value = "SELECT * FROM department LIMIT ?2 OFFSET ?1", nativeQuery = true)
-    List<Department> findByPage(Integer start, Integer pageLength);
+    @Query( value = "SELECT * FROM department ORDER BY ?3 LIMIT ?2 OFFSET ?1", nativeQuery = true)
+    List<Department> findByPage(Integer start, Integer pageLength, Integer sortColumnNo);
 
     @Query( value = "SELECT COUNT(ID) FROM department", nativeQuery = true)
     Integer countById();

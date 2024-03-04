@@ -16,8 +16,8 @@ public class DepartmentService {
         departmentRepo.save(department);
     }
 
-    public List<Department> getList(Integer pageStart, Integer pageLength) {
-        return departmentRepo.findByPage(pageStart, pageLength);
+    public List<Department> getList(Integer pageStart, Integer pageLength, Integer sortColumnNo) {
+        return departmentRepo.findByPage(pageStart, pageLength, sortColumnNo);
     }
 
     public Integer getTotalRow() {

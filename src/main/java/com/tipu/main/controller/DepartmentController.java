@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,11 +41,16 @@ public class DepartmentController {
 
     @RequestMapping("/list/ajax")
     @ResponseBody
-    Map<String,Object> getPageList(@RequestParam(name = "start") Integer start, @RequestParam(name="length") Integer pageLength){
+    Map<String,Object> getPageList(@RequestParam(name = "start") Integer start, @RequestParam(name="length") Integer pageLength, @RequestParam(name="order[0][column]") Integer sortColumn, @RequestParam(name="order[0][dir]") String orderDir){
 
         Map<String, Object>responseMap = new HashMap<>();
 
-        List<Department>departmentList =  departmentService.getList(start, pageLength);
+        List<Department>departmentList =  departmentService.getList(start, pageLength, sortColumn+1);
+
+        if(orderDir.equals("desc")){
+            Collections.sort(departmentList, Collections.reverseOrder());
+        }
+
         responseMap.put("data",departmentList);
         Integer totalRow = departmentService.getTotalRow();
         responseMap.put("recordsTotal",totalRow);
