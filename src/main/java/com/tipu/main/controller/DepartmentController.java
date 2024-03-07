@@ -39,24 +39,33 @@ public class DepartmentController {
 //        return "/department/list";
 //    }
 
+//    @RequestMapping("/list/ajax")
+//    @ResponseBody
+//    Map<String,Object> getPageList(@RequestParam(name = "start") Integer start, @RequestParam(name="length") Integer pageLength, @RequestParam(name="order[0][column]") Integer sortColumn, @RequestParam(name="order[0][dir]") String orderDir){
+//
+//        Map<String, Object>responseMap = new HashMap<>();
+//
+//        List<Department>departmentList =  departmentService.getList(start, pageLength, sortColumn+1);
+//
+//        if(orderDir.equals("desc")){
+//            Collections.sort(departmentList, Collections.reverseOrder());
+//        }
+//
+//        responseMap.put("data",departmentList);
+//        Integer totalRow = departmentService.getTotalRow();
+//        responseMap.put("recordsTotal",totalRow);
+//        responseMap.put("recordsFiltered",totalRow);
+//
+//        return responseMap;
+//
+//    }
+
     @RequestMapping("/list/ajax")
     @ResponseBody
-    Map<String,Object> getPageList(@RequestParam(name = "start") Integer start, @RequestParam(name="length") Integer pageLength, @RequestParam(name="order[0][column]") Integer sortColumn, @RequestParam(name="order[0][dir]") String orderDir){
+     Map<String,Object> getPage(@RequestParam(name = "start") Integer start, @RequestParam(name="length") Integer pageLength,@RequestParam(name="order[0][column]") Integer sortColumnNo){
+        Map<String, Object>response = departmentService.getPage(start, pageLength);
+        return response;
 
-        Map<String, Object>responseMap = new HashMap<>();
-
-        List<Department>departmentList =  departmentService.getList(start, pageLength, sortColumn+1);
-
-        if(orderDir.equals("desc")){
-            Collections.sort(departmentList, Collections.reverseOrder());
-        }
-
-        responseMap.put("data",departmentList);
-        Integer totalRow = departmentService.getTotalRow();
-        responseMap.put("recordsTotal",totalRow);
-        responseMap.put("recordsFiltered",totalRow);
-
-        return responseMap;
 
     }
 
