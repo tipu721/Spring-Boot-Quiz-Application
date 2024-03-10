@@ -46,17 +46,20 @@
 
 
 <script>
-    $('#example').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: {
-            url: 'http://localhost:8001/Department/list/ajax',
+  const table =  $('#example').DataTable({
+        "serverSide": true,
+        "ajax": {
+            "url": 'http://localhost:8001/Department/list/ajax',
+            "dataType": "json"
         },
-        columns: [
-            { data: "id" },
-            { data: "name" }
+        "columns": [
+            { "data": "id" },
+            { "data": "name" }
         ]
     });
+
+
+  console.log(table);
 </script>
 <!-- Bootstrap JS -->
 <script

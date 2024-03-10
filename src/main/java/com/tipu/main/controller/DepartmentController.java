@@ -62,9 +62,9 @@ public class DepartmentController {
 
     @RequestMapping("/list/ajax")
     @ResponseBody
-     Map<String,Object> getPage(@RequestParam(name = "start") Integer start, @RequestParam(name="length") Integer pageLength,@RequestParam(name="order[0][column]") Integer sortColumnNo){
-        Map<String, Object>response = departmentService.getPage(start, pageLength);
-        return response;
+     Map<String,Object> getPage(@RequestParam Map<String,Object> reqMap){
+        Map<String, Object>resMap = departmentService.getPage(reqMap);
+        return resMap;
 
 
     }
