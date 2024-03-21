@@ -1,26 +1,21 @@
 package com.tipu.main.model;
-
 import javax.persistence.*;
-import java.util.List;
 
-public class UserRole {
+
+@Entity
+public class Role {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable=false, unique=true)
     private String name;
 
-    @ManyToMany(mappedBy="roleList")
-    private List<User> userList;
-
-    public UserRole() {
+    public Role() {
     }
 
-    public UserRole(String name, List<User> userList) {
+    public Role(String name) {
         this.name = name;
-        this.userList = userList;
     }
 
     public Long getId() {
@@ -37,13 +32,5 @@ public class UserRole {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<User> getUserList() {
-        return userList;
-    }
-
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
     }
 }

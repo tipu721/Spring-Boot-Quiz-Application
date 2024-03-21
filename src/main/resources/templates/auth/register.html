@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <title>Home Page</title>
+</head>
+<body>
+
+<!-- Importing NavBar -->
+<div th:insert="navbar.html :: navbar"></div>
+
+<!-- Main Container Start -->
+<div class="main-container  container py-5 px-4" style="margin-right: 500px">
+    <div class="text-box">
+        <h3 class="mb-5 text-center">User Registration</h3>
+        <!--<form class="card bg-dark py-5 px-4" th:action="@{/Student/save}" method="post">-->
+            <!--<p id="enterName">Enter Your Name</p>-->
+            <!--<input type="text" id="name" th:field=""/>-->
+            <!--<p>Enter Your Email</p>-->
+            <!--<input type="text" th:field=""/>-->
+            <!--<p>Enter Your Password</p>-->
+            <!--<input type="text" th:field=""/>-->
+            <!--<button type="submit" class="btn btn-warning">Save</button>-->
+        <!--</form>-->
+    </div>
+</div>
+
+<!-- Importing Footer -->
+<div th:insert="footer.html :: footer"></div>
+
+</body>
+</html>

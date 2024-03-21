@@ -1,11 +1,10 @@
 package com.tipu.main.repository;
 
-import com.tipu.main.model.UserRole;
+import com.tipu.main.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RoleRepository extends JpaRepository<UserRole, Long> {
+public interface RoleRepo extends JpaRepository<Role, Long> {
 
-    UserRole findByName(String name);
 }
